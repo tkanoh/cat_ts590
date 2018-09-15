@@ -1,0 +1,122 @@
+/*
+ * Copyright (c) 2014
+ *      Tamotsu Kanoh <kanoh@kanoh.org>. All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met:
+ * 1. Redistributions of source code must retain the above copyright
+ *    notice, this list of conditions and the following disclaimer.
+ * 2. Redistributions in binary form must reproduce the above copyright
+ *    notice, this list of conditions and the following disclaimer in the
+ *    documentation and/or other materials provided with the distribution.
+ * 3. Neither my name nor the names of its contributors may be used to
+ *    endorse or promote products derived from this software without
+ *    specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE REGENTS AND CONTRIBUTORS ``AS IS'' AND
+ * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ * ARE DISCLAIMED.  IN NO EVENT SHALL THE REGENTS OR CONTRIBUTORS BE LIABLE
+ * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+ * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+ * OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+ * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+ * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+ * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+ * SUCH DAMAGE.
+ */
+
+#define MAX_FREQ	60000000
+#define MIN_FREQ	30
+
+
+#define MODE_LSB	0x1
+#define MODE_USB	0x2
+#define MODE_CW		0x3
+#define MODE_FM		0x4
+#define MODE_AM		0x5
+#define MODE_FSK	0x6
+#define MODE_CW_R	0x7
+#define MODE_FSK_R	0x9
+
+struct band_plan_t {
+	int start;	
+	int end;	
+	int mode;	
+};
+
+static struct band_plan_t band_plan[] = { 
+	  135700,   135800, MODE_CW,
+	 1810000,  1825000, MODE_CW,
+	 1907500,  1912500, MODE_CW,
+	 3500000,  3520000, MODE_CW,
+	 3520000,  3525000, MODE_CW,
+	 3525000,  3530000, MODE_LSB,
+	 3530000,  3575000, MODE_LSB,
+	 3599000,  3612000, MODE_LSB,
+	 3680000,  3687000, MODE_LSB,
+	 3702000,  3716000, MODE_LSB,
+	 3745000,  3770000, MODE_LSB,
+	 3791000,  3805000, MODE_CW,
+	 7000000,  7025000, MODE_CW,
+	 7025000,  7030000, MODE_CW,
+	 7030000,  7100000, MODE_LSB,
+	 7100000,  7200000, MODE_LSB,
+	10100000, 10130000, MODE_CW,
+	10130000, 10150000, MODE_CW,
+	14000000, 14070000, MODE_CW,
+	14070000, 14100000, MODE_CW,
+	14100000, 14112000, MODE_USB,
+	14112000, 14350000, MODE_USB,
+	18068000, 18100000, MODE_CW,
+	18100000, 18110000, MODE_CW,
+	18110000, 18168000, MODE_USB,
+	21000000, 21070000, MODE_CW,
+	21070000, 21125000, MODE_CW,
+	21125000, 21150000, MODE_CW,
+	21150000, 21450000, MODE_USB,
+	24890000, 24920000, MODE_CW,
+	24920000, 24930000, MODE_CW,
+	24930000, 24990000, MODE_USB,
+	28000000, 28070000, MODE_CW,
+	28070000, 28150000, MODE_CW,
+	28150000, 28200000, MODE_CW,
+	28200000, 29000000, MODE_USB,
+	29000000, 29300000, MODE_FM,
+	29300000, 29510000, MODE_CW,
+	29510000, 29590000, MODE_CW,
+	29590000, 29610000, MODE_FM,
+	29610000, 29700000, MODE_CW,
+	50000000, 50100000, MODE_CW,
+	50100000, 50900000, MODE_USB,
+	50900000, 51000000, MODE_USB,
+	51000000, 52000000, MODE_FM,
+	52000000, 52500000, MODE_USB,
+	52500000, 52900000, MODE_FM,
+	52900000, 54000000, MODE_FM,
+	       0,        0, 0x0  
+};
+
+struct ibp_t {
+	char band[4];
+	int freq;
+	int mode;
+};
+
+static struct ibp_t ibp[] = {
+ 	"2.5", 2500000, MODE_AM,
+ 	 "5",  5000000, MODE_AM,
+	"10", 10000000, MODE_AM,
+	"14", 14100000, MODE_CW,
+	"15", 15000000, MODE_AM,
+	"18", 18110000, MODE_CW,
+	"20", 20000000, MODE_AM,
+	"21", 21150000, MODE_CW,
+	"24", 24930000, MODE_CW,
+	"28", 28200000, MODE_CW,
+	"50", 50010000, MODE_CW,
+	  "",        0, 0x0   		
+};
+
+
